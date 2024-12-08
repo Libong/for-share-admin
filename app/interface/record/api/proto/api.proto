@@ -1,0 +1,126 @@
+syntax = "proto3";
+
+package com.liBong.forShare.interface.record;
+
+option go_package = "./;api";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "router/api/proto/router.proto";
+import "auth/api/proto/auth.proto";
+
+service RecordInterface{
+
+  option(libong.prefix) = "libong/record";
+
+  //添加记录
+  rpc addRecord(AddRecordReq)returns(AddRecordResp){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      post: "/add"
+    };
+  }
+  //修改记录
+  rpc updateRecord(UpdateRecordReq)returns(google.protobuf.Empty){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      post: "/update"
+    };
+  }
+  //删除记录
+  rpc deleteRecord(DeleteRecordReq)returns(google.protobuf.Empty){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      post: "/delete"
+    };
+  }
+  //记录详情
+  rpc recordByID(RecordByIDReq)returns(RecordByIDResp){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      get: "/detail"
+    };
+  }
+  //分页查询
+  rpc searchRecordsPage(SearchRecordsPageReq)returns(SearchRecordsPageResp){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      get: "/search/page"
+    };
+  }
+}
+message Category{
+  string id = 1;
+  string name = 2;
+}
+message Record{
+  string record_id = 1; //记录编号
+  string good_name = 2; //物品名称
+  uint32 status = 3; //记录状态 1使用中 2历史
+  int64 buy_at = 4; //购买时间
+  int64 product_at = 5; //生产日期
+  int64 overdue_at = 6; //过期时间
+  uint32 star_level = 7; //星级
+  string picture = 8; //图片
+  string comment = 9; //评价
+  int64 establish_at = 10; //创建时间
+  repeated Category categories = 11; //分类
+}
+message AddRecordReq{
+  string good_name = 2; //物品名称
+  int64 buy_at = 4; //购买时间
+  int64 product_at = 5; //生产日期
+  int64 overdue_at = 6; //过期时间
+  uint32 star_level = 7; //星级
+  string picture = 8; //图片
+  string comment = 9; //评价
+  repeated string category_ids = 10; //分类
+}
+message AddRecordResp{
+  string record_id = 1;
+}
+message UpdateRecordReq{
+  string record_id = 1; //记录编号
+  string good_name = 2; //物品名称
+  uint32 status = 3; //记录状态 1使用中 2历史
+  int64 buy_at = 4; //购买时间
+  int64 product_at = 5; //生产日期
+  int64 overdue_at = 6; //过期时间
+  uint32 star_level = 7; //星级
+  string picture = 8; //图片
+  string comment = 9; //评价
+  repeated string category_ids = 10; //分类
+}
+message DeleteRecordReq{
+  string record_id = 1;
+}
+message RecordByIDReq{
+  string record_id = 1;
+}
+message RecordByIDResp{
+  Record record = 1;
+}
+message TimeRange{
+  int64 start_at = 1;
+  int64 end_at = 2;
+}
+message RecordCondition{
+  string fuzzy_good_name = 1; //物品名称
+  repeated string record_ids = 2;
+  uint32 status = 3; //记录状态 1使用中 2历史
+  TimeRange bug_at_range = 4; //购买时间范围
+  TimeRange product_at_range = 5; //生产日期范围
+  TimeRange overdue_at_range = 6; //过期时间范围
+  TimeRange establish_at_range = 7; //创建时间范围
+  repeated uint32 star_levels = 10; //星级
+}
+message SearchRecordsPageReq{
+  RecordCondition condition = 1;
+
+  uint32 page_num = 100;
+  uint32 page_size = 101;
+}
+message SearchRecordsPageResp{
+  repeated Record list = 1;
+  int64 total = 2;
+}
