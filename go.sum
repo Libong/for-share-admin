@@ -38,6 +38,10 @@ cloud.google.com/go/storage v1.14.0/go.mod h1:GrKmX003DSIwi9o29oFT7YDnHYwZoctc3f
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
+github.com/Libong/common v0.0.0-20250105074641-7031e94ae44c h1:bFA+HFPQ1gtTWSWHQjxWUjCILWPFv6ZSE6HVF+t5qj0=
+github.com/Libong/common v0.0.0-20250105074641-7031e94ae44c/go.mod h1:7JG43IdKtIt+uLcpJRrQ/VBk7xuuAxZEDA2+m/zXd2o=
+github.com/Libong/login v0.0.0-20250105151543-a0f46d2630d0 h1:BDvJPlm+sH+KkPydUOHexfpOQVyFTbxTyYznZuHLvck=
+github.com/Libong/login v0.0.0-20250105151543-a0f46d2630d0/go.mod h1:fBmh4L3EwMqoDVx1yRvbkfKzC+fArR5ToMg2sM0shjo=
 github.com/bsm/ginkgo/v2 v2.12.0 h1:Ny8MWAHyOepLGlLKYmXG4IEkioBysk6GpaRTLC8zwWs=
 github.com/bsm/gomega v1.27.10 h1:yeMWxP2pV2fG3FgAODIY8EiRE3dy0aeFYt4l7wh6yKA=
 github.com/bytedance/sonic v1.11.6 h1:oUp34TzMlL+OY1OUWxHqsdkgC/Zfc85zGqw9siXjrc0=

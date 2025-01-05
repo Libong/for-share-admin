@@ -31,10 +31,10 @@ service RecordService{
   rpc searchRecordCategories(SearchRecordCategoriesReq)returns(SearchRecordCategoriesResp){}
 }
 message AddRecordReq{
-  string good_name = 2; //物品名称
+  string goods_name = 2; //物品名R称
   uint32 status = 3; //记录状态 1使用中 2历史
   int64 buy_at = 4; //购买时间
-  int64 product_at = 5; //生产日期
+  int64 produce_at = 5; //生产日期
   int64 overdue_at = 6; //过期时间
   uint32 star_level = 7; //星级
   string picture = 8; //图片
@@ -45,10 +45,10 @@ message AddRecordResp{
 }
 message UpdateRecordReq{
   string record_id = 1; //记录编号
-  string good_name = 2; //物品名称
+  string goods_name = 2; //物品名称
   uint32 status = 3; //记录状态 1使用中 2历史
   int64 buy_at = 4; //购买时间
-  int64 product_at = 5; //生产日期
+  int64 produce_at = 5; //生产日期
   int64 overdue_at = 6; //过期时间
   uint32 star_level = 7; //星级
   string picture = 8; //图片
@@ -68,10 +68,10 @@ message RecordByIDResp{
 }
 message Record{
   string record_id = 1; //记录编号
-  string good_name = 2; //物品名称
+  string goods_name = 2; //物品名称
   uint32 status = 3; //记录状态 1使用中 2历史
   int64 buy_at = 4; //购买时间
-  int64 product_at = 5; //生产日期
+  int64 produce_at = 5; //生产日期
   int64 overdue_at = 6; //过期时间
   uint32 star_level = 7; //星级
   string picture = 8; //图片
@@ -79,13 +79,13 @@ message Record{
   int64 establish_at = 10; //创建时间
 }
 message RecordCondition{
-  string fuzzy_good_name = 1; //物品名称
+  string fuzzy_goods_name = 1; //物品名称
   repeated string record_ids = 2;
   uint32 status = 3; //记录状态 1使用中 2历史
   int64 buy_start_at = 4; //购买时间
   int64 buy_end_at = 5; //购买时间
-  int64 product_start_at = 6; //生产日期
-  int64 product_end_at = 7; //生产日期
+  int64 produce_start_at = 6; //生产日期
+  int64 produce_end_at = 7; //生产日期
   int64 overdue_start_at = 8; //过期时间
   int64 overdue_end_at = 9; //过期时间
   repeated uint32 star_levels = 10; //星级
