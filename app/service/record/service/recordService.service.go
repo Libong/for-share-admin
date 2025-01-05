@@ -92,6 +92,7 @@ func (s *Service) SearchRecordsPage(ctx context.Context, req *api.SearchRecordsP
 		if err != nil {
 			return nil, err
 		}
+		respModel.EstablishAt = m.CreatedAt.Unix()
 		resp.List = append(resp.List, respModel)
 	}
 	return resp, nil

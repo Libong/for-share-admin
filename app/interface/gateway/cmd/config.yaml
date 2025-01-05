@@ -1,4 +1,4 @@
-Server:1
+Server:
   HTTP:
     Host: "0.0.0.0"
     Port: 8001
@@ -9,7 +9,7 @@ Service:
       Port: 3306
       Account: "AKA"
       Password: "libong"
-      Database: "common_account"
+      Database: "for_share"
     Redis:
       Address: "127.0.0.1"
       Port: 6379

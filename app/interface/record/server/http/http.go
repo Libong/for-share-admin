@@ -22,13 +22,13 @@ func ConfigHttp(s *service.Service, server *http.Server) *http.Server {
 	//提出service对象 用于controller调用
 	svc = s
 	//路径配置
-	group := server.Group("libong/record")
+	group := server.Group("/record")
 
 	group.Use(auth.Authorize)
 	group.POST("/add", addRecord)
 	group.POST("/update", updateRecord)
 	group.POST("/delete", deleteRecord)
 	group.GET("/detail", recordByID)
-	group.GET("/search/page", searchRecordsPage)
+	group.POST("/search/page", searchRecordsPage)
 	return server
 }

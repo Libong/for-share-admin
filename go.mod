@@ -3,11 +3,15 @@ module for-share
 go 1.20
 
 replace (
-	libong/common => /Users/libeng/Documents/go/Project/libongCommon
-	libong/login => /Users/libeng/Documents/go/Project/login
+	libong/common => github.com/Libong/common v0.0.0-20250105074641-7031e94ae44c //main
+	libong/login => github.com/Libong/login v0.0.0-20250105151543-a0f46d2630d0 //main
 )
 
 require (
+	google.golang.org/genproto/googleapis/api v0.0.0-20231016165738-49dd2c1f3d0b
+	google.golang.org/grpc v1.58.3
+	google.golang.org/protobuf v1.34.0
+	gorm.io/gorm v1.25.5
 	libong/common v0.0.0-00010101000000-000000000000
 	libong/login v0.0.0-00010101000000-000000000000
 )
@@ -63,13 +67,9 @@ require (
 	golang.org/x/sys v0.19.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/genproto v0.0.0-20231012201019-e917dd12ba7a // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20231016165738-49dd2c1f3d0b // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231012201019-e917dd12ba7a // indirect
-	google.golang.org/grpc v1.58.3 // indirect
-	google.golang.org/protobuf v1.34.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/driver/mysql v1.5.2 // indirect
-	gorm.io/gorm v1.25.5 // indirect
 )

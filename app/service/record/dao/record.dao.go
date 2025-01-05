@@ -63,8 +63,8 @@ func (d *Dao) SearchRecordsPage(ctx context.Context, req *api.SearchRecordsPageR
 }
 
 func buildRecordConditionDB(db *gorm.DB, req *api.RecordCondition) {
-	if req.FuzzyGoodName != "" {
-		db.Where("fuzzy_good_name like ?", "%"+req.FuzzyGoodName+"%")
+	if req.FuzzyGoodsName != "" {
+		db.Where("goods_name like ?", "%"+req.FuzzyGoodsName+"%")
 	}
 	if len(req.RecordIds) != 0 {
 		db.Where("record_ids in ?", req.RecordIds)
@@ -75,8 +75,8 @@ func buildRecordConditionDB(db *gorm.DB, req *api.RecordCondition) {
 	if req.BuyStartAt != 0 && req.BuyEndAt != 0 {
 		db.Where("buy_at between ? and ?", req.BuyStartAt, req.BuyEndAt)
 	}
-	if req.ProductStartAt != 0 && req.ProductEndAt != 0 {
-		db.Where("product_at between ? and ?", req.ProductStartAt, req.ProductEndAt)
+	if req.ProduceStartAt != 0 && req.ProduceEndAt != 0 {
+		db.Where("produce_at between ? and ?", req.ProduceStartAt, req.ProduceEndAt)
 	}
 	if req.OverdueStartAt != 0 && req.OverdueEndAt != 0 {
 		db.Where("overdue_at between ? and ?", req.OverdueStartAt, req.OverdueEndAt)

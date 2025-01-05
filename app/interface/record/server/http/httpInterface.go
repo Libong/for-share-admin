@@ -78,7 +78,7 @@ func searchRecordsPage(ctx *http.Context) error {
 		resp *api.SearchRecordsPageResp
 		err  error
 	)
-	err = ctx.MarshalGet(req)
+	err = ctx.MarshalPost(req)
 	if err != nil {
 		return err
 	}
