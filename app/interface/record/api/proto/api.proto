@@ -11,7 +11,7 @@ import "auth/api/proto/auth.proto";
 
 service RecordInterface{
 
-  option(libong.prefix) = "record";
+  option(libong.prefix) = "/record";
 
   //添加记录
   rpc addRecord(AddRecordReq)returns(AddRecordResp){

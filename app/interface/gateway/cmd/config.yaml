@@ -18,4 +18,4 @@ Service:
   RBACService:
     Host: "0.0.0.0"
     Port: 9000
-TokenExpireAt: 432000
+TokenExpireAt: 864000

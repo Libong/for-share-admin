@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package com.liBong.forShare.interface.calendar;
+
+option go_package = "./;api";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "router/api/proto/router.proto";
+import "auth/api/proto/auth.proto";
+
+service CalendarInterface{
+
+  option(libong.prefix) = "/financeBill";
+
+  //添加日历账单
+  rpc addFinanceBill(AddFinanceBillReq)returns(AddFinanceBillResp){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      post: "/add"
+    };
+  }
+  //修改日历账单
+  rpc updateFinanceBill(UpdateFinanceBillReq)returns(google.protobuf.Empty){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      post: "/update"
+    };
+  }
+  //删除日历账单
+  rpc deleteFinanceBill(DeleteFinanceBillReq)returns(google.protobuf.Empty){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      post: "/delete"
+    };
+  }
+  //日历账单详情
+  rpc financeBillByID(FinanceBillByIDReq)returns(FinanceBillByIDResp){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      get: "/detail"
+    };
+  }
+  //分页查询
+  rpc searchFinanceBillsPage(SearchFinanceBillsPageReq)returns(SearchFinanceBillsPageResp){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      post: "/search/page"
+    };
+  }
+}
+message FinanceBill{
+  string bill_id = 1;
+  double day_income = 2; //今日收入
+  double cash = 3; //现金收入
+  double online_income = 4; //在线收入
+  double goods_expenses = 5; //货物支出
+  double drinks_expenses = 6; //酒水支出
+  double other_expenses = 7; //其他支出
+  string other_expenses_remark = 8; //其他支出备注
+  uint32 is_draw = 9; //是否提款
+  double draw_income = 10; //提款收入
+  double card_income = 11; //卡收入
+  string remark = 12; //备注
+  int64 timestamp = 13; //时间戳
+}
+message AddFinanceBillReq{
+  double day_income = 2; //今日收入
+  double cash = 3; //现金收入
+  double online_income = 4; //在线收入
+  double goods_expenses = 5; //货物支出
+  double drinks_expenses = 6; //酒水支出
+  double other_expenses = 7; //其他支出
+  string other_expenses_remark = 8; //其他支出备注
+  uint32 is_draw = 9; //是否提款
+  double draw_income = 10; //提款收入
+  double card_income = 11; //卡收入
+  string remark = 12; //备注
+  int64 timestamp = 13; //时间戳
+}
+message AddFinanceBillResp{
+  string bill_id = 1;
+}
+message UpdateFinanceBillReq{
+  string bill_id = 1;
+  double day_income = 2; //今日收入
+  double cash = 3; //现金收入
+  double online_income = 4; //在线收入
+  double goods_expenses = 5; //货物支出
+  double drinks_expenses = 6; //酒水支出
+  double other_expenses = 7; //其他支出
+  string other_expenses_remark = 8; //其他支出备注
+  uint32 is_draw = 9; //是否提款
+  double draw_income = 10; //提款收入
+  double card_income = 11; //卡收入
+  string remark = 12; //备注
+  int64 timestamp = 13; //时间戳
+}
+message DeleteFinanceBillReq{
+  string bill_id = 1;
+}
+message FinanceBillByIDReq{
+  string bill_id = 1;
+}
+message FinanceBillByIDResp{
+  FinanceBill finance_bill = 1;
+}
+
+message SearchFinanceBillsPageReq{
+  int64 start_timestamp = 1; //时间戳
+  int64 end_timestamp = 2; //时间戳
+  uint32 page_num = 100;
+  uint32 page_size = 101;
+}
+message SearchFinanceBillsPageResp{
+  repeated FinanceBill list = 1;
+  int64 total = 2;
+}
