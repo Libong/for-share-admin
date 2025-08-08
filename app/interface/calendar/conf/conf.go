@@ -6,7 +6,6 @@ import (
 	"libong/common/server/grpc"
 	"libong/common/server/http"
 	commonTool "libong/common/tool"
-	"libong/login/app/interface/sms"
 )
 
 type Config struct {
@@ -23,9 +22,7 @@ func New() *Config {
 }
 
 type Service struct {
-	Dao         *Dao
-	RBACService *grpc.Config
-	SmsConfig   *sms.Config
+	Dao *Dao
 }
 type Dao struct {
 	Mysql *commonMysql.Config

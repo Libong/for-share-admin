@@ -10,10 +10,21 @@ import (
 	recordInterfaceConf "for-share/app/interface/record/conf"
 	recordInterfaceHttp "for-share/app/interface/record/server/http"
 	recordInterfaceService "for-share/app/interface/record/service"
+
+	calendarInterfaceConf "for-share/app/interface/calendar/conf"
+	calendarInterfaceHttp "for-share/app/interface/calendar/server/http"
+	calendarInterfaceService "for-share/app/interface/calendar/service"
 )
 
 func New(conf *conf.Config) *http.Server {
 	server := http.New(conf.Server.HTTP)
+
+	calendarInterfaceHttp.ConfigHttp(calendarInterfaceService.New(&calendarInterfaceConf.Service{
+		Dao: &calendarInterfaceConf.Dao{
+			Redis: conf.Service.Dao.Redis,
+			Mysql: conf.Service.Dao.Mysql,
+		},
+	}), server)
 
 	recordInterfaceHttp.ConfigHttp(recordInterfaceService.New(&recordInterfaceConf.Service{
 		Dao: &recordInterfaceConf.Dao{
@@ -31,6 +42,7 @@ func New(conf *conf.Config) *http.Server {
 			Mysql: conf.Service.Dao.Mysql,
 		},
 		RBACService: conf.Service.RBACService,
+		SmsConfig:   conf.Service.SmsConfig,
 	}), server)
 	return server
 }

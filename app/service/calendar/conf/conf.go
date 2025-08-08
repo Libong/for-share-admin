@@ -1,18 +1,14 @@
 package conf
 
 import (
-	commonMysql "libong/common/orm/mysql"
-	commonRedis "libong/common/redis"
+	"libong/common/orm/mysql"
 	"libong/common/server/grpc"
-	"libong/common/server/http"
 	commonTool "libong/common/tool"
-	"libong/login/app/interface/sms"
 )
 
 type Config struct {
-	Server             *Server
-	Service            *Service
-	LoginTokenExpireAt int64
+	Server  *Server
+	Service *Service
 }
 
 func New() *Config {
@@ -23,15 +19,12 @@ func New() *Config {
 }
 
 type Service struct {
-	Dao         *Dao
-	RBACService *grpc.Config
-	SmsConfig   *sms.Config
+	Dao *Dao
 }
 type Dao struct {
 	Mysql *commonMysql.Config
-	Redis *commonRedis.Config
 }
 type Server struct {
-	HTTP *http.Config
+	//HTTP *http
 	GRPC *grpc.Config
 }

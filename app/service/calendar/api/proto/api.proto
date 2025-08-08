@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package com.libong.forShare.service.financeBill;
+
+option go_package = "./;api";
+
+import "google/protobuf/empty.proto";
+
+service FinanceBillService{
+
+  /*-----------------记录-----------------*/
+  //添加记录
+  rpc addFinanceBill(AddFinanceBillReq)returns(AddFinanceBillResp){}
+  //修改记录
+  rpc updateFinanceBill(UpdateFinanceBillReq)returns(google.protobuf.Empty){}
+  //删除记录
+  rpc deleteFinanceBill(DeleteFinanceBillReq)returns(google.protobuf.Empty){}
+  //记录详情
+  rpc financeBillByID(FinanceBillByIDReq)returns(FinanceBillByIDResp){}
+  //分页查询
+  rpc searchFinanceBillsPage(SearchFinanceBillsPageReq)returns(SearchFinanceBillsPageResp){}
+  //查询记录总数
+  rpc countFinanceBill(CountFinanceBillReq)returns(CountFinanceBillResp){}
+}
+message AddFinanceBillReq{
+  double day_income = 2; //今日收入
+  double cash = 3; //现金收入
+  double online_income = 4; //在线收入
+  double goods_expenses = 5; //货物支出
+  double drinks_expenses = 6; //酒水支出
+  double other_expenses = 7; //其他支出
+  string other_expenses_remark = 8; //其他支出备注
+  uint32 is_draw = 9; //是否提款
+  double draw_income = 10; //提款收入
+  double card_income = 11; //卡收入
+  string remark = 12; //备注
+  int64 timestamp = 13; //时间戳
+}
+message AddFinanceBillResp{
+  string id = 1;
+}
+message UpdateFinanceBillReq{
+  string bill_id = 1; //账单编号
+  double day_income = 2; //今日收入
+  double cash = 3; //现金收入
+  double online_income = 4; //在线收入
+  double goods_expenses = 5; //货物支出
+  double drinks_expenses = 6; //酒水支出
+  double other_expenses = 7; //其他支出
+  string other_expenses_remark = 8; //其他支出备注
+  uint32 is_draw = 9; //是否提款
+  double draw_income = 10; //提款收入
+  double card_income = 11; //卡收入
+  string remark = 12; //备注
+  int64 timestamp = 13; //时间戳
+
+  bool handle_zero = 90; //是否处理零值 需要在dao层进行判断 为true时只能传可以被设置为零值的字段
+  repeated string zero_fields = 91; //要处理的字段json
+}
+message DeleteFinanceBillReq{
+  string id = 1;
+}
+message FinanceBillByIDReq{
+  string id = 1;
+}
+message FinanceBillByIDResp{
+   FinanceBill financeBill = 1;
+}
+message FinanceBill{
+  string bill_id = 1; //账单编号
+  double day_income = 2; //今日收入
+  double cash = 3; //现金收入
+  double online_income = 4; //在线收入
+  double goods_expenses = 5; //货物支出
+  double drinks_expenses = 6; //酒水支出
+  double other_expenses = 7; //其他支出
+  string other_expenses_remark = 8; //其他支出备注
+  uint32 is_draw = 9; //是否提款
+  double draw_income = 10; //提款收入
+  double card_income = 11; //卡收入
+  string remark = 12; //备注
+  int64 establish_at = 13; //创建时间
+  int64 timestamp = 14; //时间戳
+}
+message FinanceBillCondition{
+  int64 start_timestamp = 1; //时间戳
+  int64 end_timestamp = 2; //时间戳
+}
+message SearchFinanceBillsPageReq{
+  FinanceBillCondition condition = 1;
+
+  uint32 page_num = 100;
+  uint32 page_size = 101;
+}
+message SearchFinanceBillsPageResp{
+  repeated FinanceBill list = 1;
+}
+message CountFinanceBillReq{
+  FinanceBillCondition condition = 1;
+}
+message CountFinanceBillResp{
+  int64 total = 1;
+}
+enum FinanceBillIsDraw{
+    FinanceBillIsDrawUnknown = 0;
+    FinanceBillIsDrawYes = 1; //是
+    FinanceBillIsDrawNo = 2; //否
+}
