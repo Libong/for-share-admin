@@ -42,6 +42,7 @@ func New(conf *conf.Config) *http.Server {
 			Mysql: conf.Service.Dao.Mysql,
 		},
 		RBACService: conf.Service.RBACService,
+		SmsConfig:   conf.Service.SmsConfig,
 	}), server)
 	return server
 }
