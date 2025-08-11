@@ -78,7 +78,13 @@ func (s *Service) FinanceBillByID(ctx context.Context, req *api.FinanceBillByIDR
 }
 
 func (s *Service) SearchFinanceBillsPage(ctx context.Context, req *api.SearchFinanceBillsPageReq) (*api.SearchFinanceBillsPageResp, error) {
-	models, err := s.dao.SearchFinanceBillsPage(ctx, req)
+	var models []*model.FinanceBill
+	var err error
+	if req.Condition != nil && req.Condition.GroupByOwner {
+		models, err = s.dao.SearchFinanceBillOwners(ctx)
+	} else {
+		models, err = s.dao.SearchFinanceBillsPage(ctx, req)
+	}
 	if err != nil {
 		return nil, err
 	}

@@ -88,3 +88,19 @@ func searchFinanceBillsPage(ctx *http.Context) error {
 	ctx.ResponseData(resp)
 	return nil
 }
+func searchFinanceBillAccounts(ctx *http.Context) error {
+	var (
+		req  = &api.SearchFinanceBillAccountsReq{}
+		resp *api.SearchFinanceBillAccountsResp
+		err  error
+	)
+	err = ctx.MarshalGet(req)
+	if err != nil {
+		return err
+	}
+	if resp, err = svc.SearchFinanceBillAccounts(context.FromHTTPContext(ctx), req); err != nil {
+		return err
+	}
+	ctx.ResponseData(resp)
+	return nil
+}

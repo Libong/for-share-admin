@@ -17,6 +17,7 @@ type FinanceBill struct {
 	CardIncome          float64 `gorm:"column:card_income" json:"card_income"`                     //卡收入
 	Remark              string  `gorm:"column:remark" json:"remark"`                               //备注
 	Timestamp           int64   `gorm:"column:timestamp" json:"timestamp"`                         //时间戳
+	Owner               string  `gorm:"column:owner" json:"owner"`                                 //拥有者
 }
 type UpdateFinanceBillReq struct {
 	DayIncome           float64 `json:"day_income"`            //今日收入
@@ -30,4 +31,5 @@ type UpdateFinanceBillReq struct {
 	DrawIncome          float64 `json:"draw_income"`           //提款收入
 	CardIncome          float64 `json:"card_income"`           //卡收入
 	Remark              string  `json:"remark"`                //备注
+	Timestamp           int64   `json:"timestamp"`             //时间戳
 }

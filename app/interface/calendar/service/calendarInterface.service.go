@@ -6,14 +6,21 @@ import (
 	"for-share/errors"
 	"libong/common/context"
 	commonTool "libong/common/tool"
+	loginError "libong/login/errors"
+	accountServiceApi "libong/login/rpc/account/api"
 )
 
 func (s *Service) AddFinanceBill(ctx context.Context, req *api.AddFinanceBillReq) (*api.AddFinanceBillResp, error) {
+	if ctx.User() == nil {
+		return nil, loginError.AuthorizationFail
+	}
+	uid := ctx.User().UID
 	reqApi := &financeBillServiceApi.AddFinanceBillReq{}
 	err := commonTool.CopyByJSON(req, reqApi)
 	if err != nil {
 		return nil, err
 	}
+	reqApi.Owner = uid
 	addFinanceBillResp, err := s.calendarService.AddFinanceBill(ctx, reqApi)
 	if err != nil {
 		return nil, err
@@ -72,9 +79,18 @@ func (s *Service) FinanceBillByID(ctx context.Context, req *api.FinanceBillByIDR
 	return resp, nil
 }
 func (s *Service) SearchFinanceBillsPage(ctx context.Context, req *api.SearchFinanceBillsPageReq) (*api.SearchFinanceBillsPageResp, error) {
+	if ctx.User() == nil {
+		return nil, loginError.AuthorizationFail
+	}
+	var uid = ctx.User().UID
+	role := ctx.User().CurRole
+	if role == "manager" && req.Owner != "" {
+		uid = req.Owner
+	}
 	condition := &financeBillServiceApi.FinanceBillCondition{
 		StartTimestamp: req.StartTimestamp,
 		EndTimestamp:   req.EndTimestamp,
+		Owner:          uid,
 	}
 	reqApi := &financeBillServiceApi.SearchFinanceBillsPageReq{
 		Condition: condition,
@@ -104,6 +120,45 @@ func (s *Service) SearchFinanceBillsPage(ctx context.Context, req *api.SearchFin
 			return nil, err
 		}
 		resp.List = append(resp.List, respFinanceBill)
+	}
+	return resp, nil
+}
+func (s *Service) SearchFinanceBillAccounts(ctx context.Context, req *api.SearchFinanceBillAccountsReq) (*api.SearchFinanceBillAccountsResp, error) {
+	if ctx.User() == nil {
+		return nil, loginError.AuthorizationFail
+	}
+	curRole := ctx.User().CurRole
+	if curRole != "manager" {
+		return nil, errors.PERMISSION_FAIL
+	}
+	resp := &api.SearchFinanceBillAccountsResp{}
+	searchFinanceBillsPageResp, err := s.calendarService.SearchFinanceBillsPage(ctx, &financeBillServiceApi.SearchFinanceBillsPageReq{
+		Condition: &financeBillServiceApi.FinanceBillCondition{
+			GroupByOwner: true,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+	if len(searchFinanceBillsPageResp.List) == 0 {
+		return resp, nil
+	}
+	var accountIds []string
+	for _, financeBill := range searchFinanceBillsPageResp.List {
+		accountIds = append(accountIds, financeBill.Owner)
+	}
+	accountsByIdsResp, err := s.accountService.AccountsByIds(ctx, &accountServiceApi.AccountsByIdsReq{
+		Ids: accountIds,
+	})
+	if err != nil {
+		return nil, err
+	}
+	for _, account := range accountsByIdsResp.Map {
+		resp.List = append(resp.List, &api.FinanceBillAccount{
+			Avatar:    account.Avatar,
+			AccountId: account.AccountId,
+			Account:   account.Account,
+		})
 	}
 	return resp, nil
 }

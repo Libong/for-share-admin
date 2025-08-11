@@ -3,8 +3,8 @@ module for-share
 go 1.20
 
 replace (
-	libong/common => github.com/Libong/common v0.0.0-20250808080407-feea0801ba0b //main
-	libong/login => github.com/Libong/login v0.0.0-20250808081546-16eb3dbd9ca2 //main
+	libong/common => github.com/Libong/common v0.0.0-20250810172910-fe08b7b57686 //main
+	libong/login => github.com/Libong/login v0.0.0-20250811084451-c9c625bd56d4 //main
 )
 
 require (

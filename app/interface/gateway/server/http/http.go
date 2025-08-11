@@ -24,6 +24,7 @@ func New(conf *conf.Config) *http.Server {
 			Redis: conf.Service.Dao.Redis,
 			Mysql: conf.Service.Dao.Mysql,
 		},
+		RBACService: conf.Service.RBACService,
 	}), server)
 
 	recordInterfaceHttp.ConfigHttp(recordInterfaceService.New(&recordInterfaceConf.Service{

@@ -48,6 +48,13 @@ service CalendarInterface{
       post: "/search/page"
     };
   }
+  //查询有账单的用户
+  rpc searchFinanceBillAccounts(SearchFinanceBillAccountsReq)returns(SearchFinanceBillAccountsResp){
+    option (libong.auth) = true;
+    option (google.api.http) = {
+      get: "/account/search"
+    };
+  }
 }
 message FinanceBill{
   string bill_id = 1;
@@ -109,10 +116,22 @@ message FinanceBillByIDResp{
 message SearchFinanceBillsPageReq{
   int64 start_timestamp = 1; //时间戳
   int64 end_timestamp = 2; //时间戳
+  string owner = 3; //拥有者
   uint32 page_num = 100;
   uint32 page_size = 101;
 }
 message SearchFinanceBillsPageResp{
   repeated FinanceBill list = 1;
   int64 total = 2;
+}
+message SearchFinanceBillAccountsReq{
+
+}
+message FinanceBillAccount{
+  string avatar = 1; //头像
+  string account_id = 2;//加密用户id
+  string account = 3; //用户名
+}
+message SearchFinanceBillAccountsResp{
+  repeated FinanceBillAccount list = 1;
 }

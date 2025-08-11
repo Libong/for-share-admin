@@ -61,16 +61,31 @@ func (d *Dao) SearchFinanceBillsPage(ctx context.Context, req *api.SearchFinance
 	return respModel, nil
 }
 
+func (d *Dao) SearchFinanceBillOwners(ctx context.Context) ([]*model.FinanceBill, error) {
+	var respModel []*model.FinanceBill
+	db := d.Context(ctx).Table(_financeBillTable)
+	db.Group("owner").Select("owner,count(*)")
+	db.Find(&respModel)
+	if err := db.Error; err != nil {
+		log.Error(ctx, "SearchFinanceBillOwners error(%+v)", err)
+		return nil, err
+	}
+	return respModel, nil
+}
+
 func buildFinanceBillConditionDB(db *gorm.DB, req *api.FinanceBillCondition) {
+	if req == nil {
+		return
+	}
 	//if req.FuzzyGoodsName != "" {
 	//	db.Where("goods_name like ?", "%"+req.FuzzyGoodsName+"%")
 	//}
 	//if len(req.FinanceBillIds) != 0 {
 	//	db.Where("financeBill_ids in ?", req.FinanceBillIds)
 	//}
-	//if req.Status != 0 {
-	//	db.Where("status = ?", req.Status)
-	//}
+	if req.Owner != "" {
+		db.Where("owner = ?", req.Owner)
+	}
 	//if req.BuyStartAt != 0 && req.BuyEndAt != 0 {
 	//	db.Where("buy_at between ? and ?", req.BuyStartAt, req.BuyEndAt)
 	//}

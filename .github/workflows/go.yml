@@ -4,9 +4,9 @@
 name: Go
 
 on:
-  push:
-    branches:
-      - dev
+#  push:
+#    branches:
+#      - dev
   pull_request:
     branches: 
       - main
