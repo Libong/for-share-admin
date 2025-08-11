@@ -22,7 +22,8 @@ func New() *Config {
 }
 
 type Service struct {
-	Dao *Dao
+	Dao         *Dao
+	RBACService *grpc.Config
 }
 type Dao struct {
 	Mysql *commonMysql.Config

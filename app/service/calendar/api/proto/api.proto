@@ -35,6 +35,7 @@ message AddFinanceBillReq{
   double card_income = 11; //卡收入
   string remark = 12; //备注
   int64 timestamp = 13; //时间戳
+  string owner = 14; //拥有者
 }
 message AddFinanceBillResp{
   string id = 1;
@@ -81,10 +82,13 @@ message FinanceBill{
   string remark = 12; //备注
   int64 establish_at = 13; //创建时间
   int64 timestamp = 14; //时间戳
+  string owner = 15; //拥有者
 }
 message FinanceBillCondition{
   int64 start_timestamp = 1; //时间戳
   int64 end_timestamp = 2; //时间戳
+  string owner = 3; //拥有者
+  bool group_by_owner = 4; //拥有者分组
 }
 message SearchFinanceBillsPageReq{
   FinanceBillCondition condition = 1;

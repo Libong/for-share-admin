@@ -30,5 +30,6 @@ func ConfigHttp(s *service.Service, server *http.Server) *http.Server {
 	group.POST("/delete", deleteFinanceBill)
 	group.GET("/detail", financeBillByID)
 	group.POST("/search/page", searchFinanceBillsPage)
+	group.GET("/account/search", searchFinanceBillAccounts)
 	return server
 }

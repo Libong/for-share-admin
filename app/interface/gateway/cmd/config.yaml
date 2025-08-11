@@ -19,4 +19,6 @@ Service:
     Host: "0.0.0.0"
     Port: 9000
   SmsConfig:
+    Secret: "XALgM8M4GMrdnwDe"
+    Url: "https://push.spug.cc/send/"
 TokenExpireAt: 864000
