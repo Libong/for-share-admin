@@ -6,13 +6,15 @@ replace google.golang.org/protobuf => google.golang.org/protobuf v1.25.0
 
 replace google.golang.org/grpc => google.golang.org/grpc v1.58.3
 
-replace google.golang.org/genproto/googleapis/rpc => google.golang.org/genproto/googleapis/rpc v0.0.0-20231120223509-83a465c0220f
-
 replace (
 	libong/common => github.com/Libong/common v0.0.0-20250821074829-4e8b71adb6a3 //main
 	libong/login => github.com/Libong/login v0.0.0-20250826094345-64b26642a7bf //main
 	libong/rbac => github.com/Libong/rbac v0.0.0-20250821060959-11a167c0419a //main
 )
+
+replace google.golang.org/genproto/googleapis/rpc => google.golang.org/genproto/googleapis/rpc v0.0.0-20231120223509-83a465c0220f
+
+replace google.golang.org/genproto/googleapis/api => google.golang.org/genproto/googleapis/api v0.0.0-20231016165738-49dd2c1f3d0b
 
 require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20250127172529-29210b9bc287
@@ -74,6 +76,7 @@ require (
 	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
+	google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250124145028-65684f501c47 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
