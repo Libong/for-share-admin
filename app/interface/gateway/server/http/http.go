@@ -14,6 +14,10 @@ import (
 	calendarInterfaceConf "for-share/app/interface/calendar/conf"
 	calendarInterfaceHttp "for-share/app/interface/calendar/server/http"
 	calendarInterfaceService "for-share/app/interface/calendar/service"
+
+	accountConf "libong/rbac/app/interface/account/conf"
+	accountHttp "libong/rbac/app/interface/account/server/http"
+	accountService "libong/rbac/app/interface/account/service"
 )
 
 func New(conf *conf.Config) *http.Server {
@@ -42,8 +46,12 @@ func New(conf *conf.Config) *http.Server {
 			Redis: conf.Service.Dao.Redis,
 			Mysql: conf.Service.Dao.Mysql,
 		},
-		RBACService: conf.Service.RBACService,
-		SmsConfig:   conf.Service.SmsConfig,
+		RBACService:        conf.Service.RBACService,
+		SmsConfig:          conf.Service.SmsConfig,
+		LoginTokenExpireAt: conf.LoginTokenExpireAt,
+	}), server)
+	accountHttp.ConfigHttp(accountService.New(&accountConf.Service{
+		AccountService: conf.Service.RBACService,
 	}), server)
 	return server
 }

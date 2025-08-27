@@ -70,6 +70,8 @@ message FinanceBill{
   double card_income = 11; //卡收入
   string remark = 12; //备注
   int64 timestamp = 13; //时间戳
+  double repay_expenses = 14; //还款支出
+  string extra = 15;
 }
 message AddFinanceBillReq{
   double day_income = 2; //今日收入
@@ -84,6 +86,8 @@ message AddFinanceBillReq{
   double card_income = 11; //卡收入
   string remark = 12; //备注
   int64 timestamp = 13; //时间戳
+  double repay_expenses = 14; //还款支出
+  string extra = 15;
 }
 message AddFinanceBillResp{
   string bill_id = 1;
@@ -102,6 +106,8 @@ message UpdateFinanceBillReq{
   double card_income = 11; //卡收入
   string remark = 12; //备注
   int64 timestamp = 13; //时间戳
+  double repay_expenses = 14; //还款支出
+  string extra = 15;
 }
 message DeleteFinanceBillReq{
   string bill_id = 1;
