@@ -36,6 +36,8 @@ message AddFinanceBillReq{
   string remark = 12; //备注
   int64 timestamp = 13; //时间戳
   string owner = 14; //拥有者
+  double repay_expenses = 15; //还款支出
+  string extra = 16;
 }
 message AddFinanceBillResp{
   string id = 1;
@@ -54,6 +56,8 @@ message UpdateFinanceBillReq{
   double card_income = 11; //卡收入
   string remark = 12; //备注
   int64 timestamp = 13; //时间戳
+  double repay_expenses = 14; //还款支出
+  string extra = 15;
 
   bool handle_zero = 90; //是否处理零值 需要在dao层进行判断 为true时只能传可以被设置为零值的字段
   repeated string zero_fields = 91; //要处理的字段json
@@ -83,6 +87,8 @@ message FinanceBill{
   int64 establish_at = 13; //创建时间
   int64 timestamp = 14; //时间戳
   string owner = 15; //拥有者
+  double repay_expenses = 16; //还款支出
+  string extra = 17;
 }
 message FinanceBillCondition{
   int64 start_timestamp = 1; //时间戳
