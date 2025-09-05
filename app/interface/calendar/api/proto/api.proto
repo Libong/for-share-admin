@@ -88,6 +88,7 @@ message AddFinanceBillReq{
   int64 timestamp = 13; //时间戳
   double repay_expenses = 14; //还款支出
   string extra = 15;
+  string owner = 16; //拥有者
 }
 message AddFinanceBillResp{
   string bill_id = 1;

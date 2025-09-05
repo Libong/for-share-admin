@@ -13,6 +13,7 @@ Thumbs.db
 *.cert
 *.key
 .test
+*.pem
 #日志
 ~/cmd/log
 *.log

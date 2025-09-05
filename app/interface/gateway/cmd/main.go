@@ -8,11 +8,13 @@ import (
 	commonRedis "libong/common/redis"
 	"libong/common/server"
 	"libong/common/snowflake"
+	commonToolCrypt "libong/common/tool/crypt"
 )
 
 func main() {
 	//初始化配置文件
 	config := conf.New()
+	commonToolCrypt.LoadPrivateKey()
 	log.Init()
 	//初始化雪花算法 用于生成id
 	snowflake.NewWorker(snowflake.WorkerIDBits, snowflake.DataCenterIDBits)
