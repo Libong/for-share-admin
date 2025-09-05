@@ -20,7 +20,9 @@ func (s *Service) AddFinanceBill(ctx context.Context, req *api.AddFinanceBillReq
 	if err != nil {
 		return nil, err
 	}
-	reqApi.Owner = uid
+	if reqApi.Owner == "" {
+		reqApi.Owner = uid
+	}
 	addFinanceBillResp, err := s.calendarService.AddFinanceBill(ctx, reqApi)
 	if err != nil {
 		return nil, err
