@@ -1014,8 +1014,8 @@ git.sr.ht/~sbinet/gg v0.3.1/go.mod h1:KGYtlADtqsqANL9ueOFkWymvzUvLMQllU5Ixo+8v3p
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/JohnCGriffin/overflow v0.0.0-20211019200055-46fa312c352c/go.mod h1:X0CRv0ky0k6m906ixxpzmDRLvX58TFUKS2eePweuyxk=
-github.com/Libong/common v0.0.0-20250905100003-802b25195e34 h1:/Ak+ZhyxwxQUCxKuYIqKHsmnj5EpHK7j1yTDnyZBBVY=
-github.com/Libong/common v0.0.0-20250905100003-802b25195e34/go.mod h1:7JG43IdKtIt+uLcpJRrQ/VBk7xuuAxZEDA2+m/zXd2o=
+github.com/Libong/common v0.0.0-20250909172133-089059d32f0b h1:3FOXy+H1ow6PFsQDm1WND3L8Vnrl5EwNDsxuVhsTIRk=
+github.com/Libong/common v0.0.0-20250909172133-089059d32f0b/go.mod h1:7JG43IdKtIt+uLcpJRrQ/VBk7xuuAxZEDA2+m/zXd2o=
 github.com/Libong/login v0.0.0-20250905100811-30d4268502d4 h1:txvoz0uOWRiuTnexb4MjJeXE1rEJ/0JotZWPz9GPsrU=
 github.com/Libong/login v0.0.0-20250905100811-30d4268502d4/go.mod h1:roO04qkfQDSETB7JZCjDaIGrmsoSmZPMf2U07Z6j06Q=
 github.com/Libong/rbac v0.0.0-20250905101149-be2f5f9d0614 h1:2sXqIvL1g8nOIyIb0G3n5/4vExxMnryAIg/pvRoQWCg=
