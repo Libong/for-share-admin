@@ -41,7 +41,7 @@ func (s *Service) UpdateFinanceBill(ctx context.Context, req *api.UpdateFinanceB
 		if req.ZeroFields == nil || len(req.ZeroFields) == 0 {
 			return nil
 		}
-		valueMap := commonTool.StructToFilterEmptyMap(*updateModel)
+		valueMap := commonTool.StructToKeepEmptyMap(*updateModel)
 		zeroMap := commonTool.StructToDefaultValueMap(updateModel)
 		for _, field := range req.ZeroFields {
 			if zeroMap[field] != nil && valueMap[field] != nil {

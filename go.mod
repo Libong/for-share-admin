@@ -7,7 +7,7 @@ replace google.golang.org/protobuf => google.golang.org/protobuf v1.25.0
 replace google.golang.org/grpc => google.golang.org/grpc v1.58.3
 
 replace (
-	libong/common => github.com/Libong/common v0.0.0-20250905100003-802b25195e34 //main
+	libong/common => github.com/Libong/common v0.0.0-20250909172133-089059d32f0b //main
 	libong/login => github.com/Libong/login v0.0.0-20250905100811-30d4268502d4 //main
 	libong/rbac => github.com/Libong/rbac v0.0.0-20250905101149-be2f5f9d0614 //main
 )
