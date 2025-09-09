@@ -40,6 +40,9 @@ func (s *Service) UpdateFinanceBill(ctx context.Context, req *api.UpdateFinanceB
 	if err != nil {
 		return err
 	}
+	updateApi.HandleZero = true
+	updateApi.ZeroFields = []string{"day_income", "cash", "online_income", "goods_expenses", "drinks_expenses",
+		"other_expenses", "is_draw", "draw_income", "card_income", "repay_expenses"}
 	_, err = s.calendarService.UpdateFinanceBill(ctx, updateApi)
 	if err != nil {
 		return err
